@@ -1,6 +1,6 @@
 ---
 - name: Install fail2ban
-  apt:
+  package:
     name: fail2ban
     state: present
 

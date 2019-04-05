@@ -9,7 +9,10 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 def test_fail2ban_installed(host):
     fail2ban = host.package('fail2ban')
     assert fail2ban.is_installed
-    assert fail2ban.version.startswith('0.10')
+    if(host.system_info.distribution == 'ubuntu'):
+        assert fail2ban.version.startswith('0.10')
+    elif(host.system_info.distribution == 'debian'):
+        assert fail2ban.version.startswith('0.9')
 
 
 def test_jail_right_ignoreip(host):
